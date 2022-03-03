@@ -6,6 +6,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+#__next {
+  background-color: #e6e6e6;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -13,4 +17,49 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.footer {
+  background-color: #f90000;
+  color: white;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+}
+
+.point :hover {
+  cursor: pointer;
+}
+
+.color {
+  color: #f90000;
+}
+
+.navTop {
+  position: fixed !important;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: red !important;
+  color: white !important;
+}
+
+.navbar-light .navbar-brand {
+  color: white !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: white !important;
+}
+
+.carousel .slide .legend {
+  background: none !important;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: red !important;
+  border-color: red !important;
 }
