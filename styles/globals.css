@@ -20,8 +20,27 @@ a {
 }
 
 .footer {
-  background-color: #f90000;
+  background-color: #c8102e;
   color: white;
+  padding: 3% 0 1%;
+  display: flex;
+  /* width: 100%; */
+  justify-content: center;
+}
+
+.footerContent{
+  width: 100%;
+}
+
+.footerText {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding-bottom: 100px;
+}
+
+.footerHeadercontent {
+  margin-bottom: 3%;
 }
 
 .link {
@@ -34,7 +53,7 @@ a {
 }
 
 .color {
-  color: #f90000;
+  color: #c8102e;
 }
 
 .navTop {
@@ -42,7 +61,7 @@ a {
   top: 0;
   z-index: 1000;
   width: 100%;
-  background-color: red !important;
+  background-color: #c8102e !important;
   color: white !important;
 }
 
@@ -60,6 +79,20 @@ a {
 
 .btn-primary {
   color: #fff;
-  background-color: red !important;
-  border-color: red !important;
+  background-color: #c8102e !important;
+  border-color: #c8102e !important;
+}
+
+.carousel .slide {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.finalfooterline{
+  border-top: 1px solid #fff;
+  padding-top: 5px;
+}
+
+.finalfooterline p{
+  margin-top: 10px;
 }
