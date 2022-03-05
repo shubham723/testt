@@ -96,3 +96,49 @@ a {
 .finalfooterline p{
   margin-top: 10px;
 }
+
+.headersection {
+  padding: 100px 0px 0px 100px !important;
+}
+
+.blogButton {
+  background-color: transparent !important;
+  color: #c8102e !important;
+}
+
+.blogButton:hover {
+  background-color: #c8102e !important;
+  color: white !important;
+}
+
+.badge{
+  margin-right: 20px;
+  background-color: #c8102e !important;
+  cursor: pointer;
+}
+
+.submitForm {
+  background-color: white;
+  border-radius: 5px;
+}
+
+#submitContactForm {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.submitContactDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.commentForm {
+  background-color: white;
+  box-shadow: 7px 5px #c0bfbf;
+  border-radius: 5px;
+}
+
+.width98 {
+  width: 98% !important;
+}

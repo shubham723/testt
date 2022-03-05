@@ -1,10 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
 import Feed from '../components/Feed';
 import Carousel from '../components/Carousel';
-import Footer from '../components/Footer';
-import Header from '../components/Navbar';
+import Subscribe from '../components/Subscribe';
 
 export default function Home() {
   return (
@@ -13,10 +10,9 @@ export default function Home() {
         <title>Maginite</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Header />
       <Carousel />
       <Feed />
-      <Footer />
+      <Subscribe />
     </div>
   )
 }
