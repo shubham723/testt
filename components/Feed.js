@@ -6,7 +6,6 @@ import Ukraine from '../assets/Images/ukraine.jpg';
 import Jammu from '../assets/Images/jammu.jpg';
 import Sports from '../assets/Images/sports.jpg';
 import Zirakpur from '../assets/Images/zirakpur.jpg';
-import Gangubai from '../assets/Images/gangubai.jpg';
 
 const Feed = () => {
     const router = useRouter();
@@ -103,7 +102,7 @@ const Feed = () => {
                         <Button className="blogButton" onClick={() => router.push(`/blog/1`)}>Read More</Button>
                     </Col>
                     <Col>
-                        <Image variant="left" src={Gangubai} alt={'Top Categories'} />
+                        <Image variant="left" src={Zirakpur} alt={'Top Categories'} />
                     </Col>
                 </Row>
 
