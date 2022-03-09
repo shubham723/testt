@@ -3,12 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/Navbar';
 import Footer from '../components/Footer';
 
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Component {...pageProps} />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
