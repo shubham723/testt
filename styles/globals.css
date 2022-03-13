@@ -533,7 +533,7 @@ a:focus {
   position: relative;
   overflow: hidden;
   background: #fff;
-  /* background: url("../images/bg/slider-bg-1.jpg") no-repeat; */
+  background: url("../public/sports.jpg") no-repeat;
   background-size: cover;
   min-height: 550px;
 }
@@ -1558,4 +1558,6 @@ a:focus {
   opacity: 1;
 }
 
-/*# sourceMappingURL=maps/style.css.map */
+.error {
+  color: red;
+}

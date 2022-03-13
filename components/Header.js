@@ -1,13 +1,12 @@
-import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
-import Image from 'next/image';
-import banner from '../assets/Images/banner.jpg';
-import blog from '../assets/Images/blog.jpg';
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { useRouter } from 'next/router';
 
-const Header = ({ head }) => {
+const Header = () => {
+    const router = useRouter();
     return (
         <div style={{ backgroundColor: 'black', color: 'white' }}>
             <header>
-                {/* <div className="header-top-bar">
+                <div className="header-top-bar">
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-lg-6">
@@ -26,11 +25,11 @@ const Header = ({ head }) => {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
 
                 <Navbar bg="light" expand="lg">
                     <Container>
-                        <Navbar.Brand href="#">Magnitie</Navbar.Brand>
+                        <Navbar.Brand onClick={() => router.push('/')}>Magnitie</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
@@ -40,15 +39,16 @@ const Header = ({ head }) => {
                             >
                             </Nav>
                             <Nav className="d-flex">
-                                <li className="nav-item dropdown">
+                                {/* <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="blog-sidebar.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i className="icofont-thin-down"></i></a>
                                     <ul className="dropdown-menu" aria-labelledby="dropdown05">
                                         <li><a className="dropdown-item" href="blog-sidebar.html">Blog with Sidebar</a></li>
 
                                         <li><a className="dropdown-item" href="blog-single.html">Blog Single</a></li>
                                     </ul>
-                                </li>
-                                <Nav.Link href="">Contact</Nav.Link>
+                                </li> */}
+                                <Nav.Link onClick={() => router.push('/blog')}>Blogs</Nav.Link>
+                                <Nav.Link onClick={() => router.push('/contact')}>Contact</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

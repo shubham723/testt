@@ -53,7 +53,7 @@ const Footer = () => {
                   <i className="icofont-support mr-3"></i>
                   <span className="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
                 </div>
-                <h4 className="mt-2"><a href="tel:+23-345-67890">+23-456-6588</a></h4>
+                <h4 className="mt-2"><a href="tel:+23-345-67890">****</a></h4>
               </div>
             </div>
           </div>
