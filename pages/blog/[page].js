@@ -9,23 +9,42 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ToggleNotification from '../../components/Reusable Components/ToogleNotification/ToogleNotification';
 import { useRouter } from 'next/router';
+import ReactHtmlParser from 'react-html-parser';
+import Paging from '../../components/Reusable Components/Paging/Paging';
 
-const Test = () => {
+const Test = ({ page }) => {
     const [blogs, setBlogs] = useState([]);
+    const [totalPage, setTotalPage] = useState();
+    const [currentPage, setPage] = useState();
     const router = useRouter();
 
     useEffect(() => {
+        setPage(page);
         getData();
     }, []);
 
     const getData = async () => {
         try {
-            let response = await axios.get(`http://3.88.73.172:3001/v1/blogs?page=1&limit=10`);
+            console.log(page)
+            let response = await axios.get(`http://3.88.73.172:3001/v1/blogs?page=${page}&limit=10`);
+            setBlogs(response.data.data);
+            setTotalPage(response.data.meta.total_records);
+        } catch (error) {
+            ToggleNotification('Error', error?.response?.data?.message);
+        }
+    };
+
+    const searchPage = async (number) => {
+        try {
+            setPage(number);
+            let response = await axios.get(`http://3.88.73.172:3001/v1/blogs?page=${number}&limit=10`);
             setBlogs(response.data.data);
         } catch (error) {
             ToggleNotification('Error', error?.response?.data?.message);
         }
     };
+
+    console.log(currentPage);
 
     return (
         <>
@@ -74,7 +93,7 @@ const Test = () => {
 
                                                             <h2 className="mt-3 mb-3 head">{item?.title}</h2>
 
-                                                            <p className="mb-4">{item?.discription}</p>
+                                                            <p className="mb-4">{ReactHtmlParser(item?.discription)}</p>
 
                                                             <button className="btn btn-main btn-icon btn-round-full readMore" onClick={() => router.push(`/blog/${item._id}`)}>Read More <i className="icofont-simple-right ml-2"></i></button>
                                                         </div>
@@ -186,13 +205,20 @@ const Test = () => {
 
                     <div className="row mt-5 pagination">
                         <div className="col-lg-8">
-                            <nav className="pagination py-2 d-inline-block">
+                            {/* <nav className="pagination py-2 d-inline-block">
                                 <div className="nav-links">
                                     <span aria-current="page" className="page-numbers current">1</span>
                                     <a className="page-numbers" href="#">2</a>
                                     <a className="page-numbers" href="#">3</a>
                                 </div>
-                            </nav>
+                            </nav> */}
+                            <Paging
+                                status={200}
+                                page={currentPage}
+                                type="user"
+                                searchPage={searchPage}
+                                totalCount={totalPage}
+                            />
                         </div>
                     </div>
                 </div>
@@ -202,6 +228,15 @@ const Test = () => {
             <Footer />
         </>
     )
+};
+
+export async function getServerSideProps(context) {
+    // console.log(context)
+    return {
+        props: {
+            page: context.query.page
+        }
+    }
 }
 
 export default Test

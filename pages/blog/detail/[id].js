@@ -1,15 +1,16 @@
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 import Image from 'next/image';
 import backgroundImage from '../../assets/Images/sports.jpg';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { AiFillCalendar } from 'react-icons/ai';
-import Footer from '../../components/Footer';
+import Footer from '../../../components/Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ToggleNotification from '../../components/Reusable Components/ToogleNotification/ToogleNotification';
+import ToggleNotification from '../../../components/Reusable Components/ToogleNotification/ToogleNotification';
 import { Form } from 'react-bootstrap';
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ReactHtmlParser from 'react-html-parser';
 
 const Test1 = ({ id }) => {
     const [blog, setBlog] = useState({});
@@ -94,7 +95,7 @@ const Test1 = ({ id }) => {
 
                                             <h2 className="mb-4 text-md">{blog?.title}</h2>
 
-                                            <p className="lead mb-4">{blog?.discription}</p>
+                                            <p className="lead mb-4">{ReactHtmlParser(blog?.discription)}</p>
 
                                             {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Possimus natus, consectetur?Illum libero vel nihil nisi quae, voluptatem, sapiente necessitatibus distinctio voluptates, iusto qui.Laboriosam autem, nam voluptate in beatae.Lorem ipsum dolor sit amet, consectetur adipisicing elit.Quae iure officia nihil nemo, repudiandae itaque similique praesentium non aut nesciunt facere nulla, sequi sunt nam temporibus atque earum, ratione, labore.</p>
 

@@ -11,6 +11,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ToggleNotification from '../components/Reusable Components/ToogleNotification/ToogleNotification';
+import ReactHtmlParser from 'react-html-parser';
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
@@ -146,7 +147,7 @@ const Home = () => {
                           {item.title}
                         </Card.Title>
                         <Card.Text>
-                          {item.discription}
+                          {ReactHtmlParser(item.discription)}
                         </Card.Text>
                         <Card.Footer className="color point readMore" onClick={() => router.push(`/blog/${item._id}`)}>
                           Read More
