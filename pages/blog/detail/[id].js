@@ -24,7 +24,7 @@ const Test1 = ({ id }) => {
         blogData();
         getCategory();
         getTrendingBlogs();
-    }, []);
+    }, [id]);
 
     const getCategory = async () => {
         try {
@@ -81,7 +81,7 @@ const Test1 = ({ id }) => {
         }
     };
 
-    console.log(blog);
+    console.log(trendingBlogs);
     return (
         <>
             {/* <Header /> */}
@@ -131,11 +131,11 @@ const Test1 = ({ id }) => {
                                             {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.Iste, rerum beatae repellat tenetur incidunt quisquam libero dolores laudantium.Nesciunt quis itaque quidem, voluptatem autem eos animi laborum iusto expedita sapiente.</p> */}
 
                                             <div className="mt-5 clearfix">
-                                                <ul className="float-left list-inline tag-option">
+                                                {/* <ul className="float-left list-inline tag-option">
                                                     <li className="list-inline-item"><a href="#">Advancher</a></li>
                                                     <li className="list-inline-item"><a href="#">Landscape</a></li>
                                                     <li className="list-inline-item"><a href="#">Travel</a></li>
-                                                </ul>
+                                                </ul> */}
 
                                                 {/* <ul className ="float-right list-inline">
                                         <li className ="list-inline-item"> Share: </li>
@@ -260,7 +260,7 @@ const Test1 = ({ id }) => {
                                             return (
                                                 <div className="py-2">
                                                     <span className="text-sm text-muted">{item?.createdAt}</span>
-                                                    <h6 className="my-2" onClick={() => router.push(`/blog/detail/${item._id}`)}>{item?.title}</h6>
+                                                    <h6 className="my-2 cursor" onClick={() => router.push(`/blog/detail/${item._id}`)}>{item?.title}</h6>
                                                 </div>
                                             )
                                         })
@@ -288,8 +288,8 @@ const Test1 = ({ id }) => {
                                         categories?.length > 0 && categories.map(item => {
                                             return (
                                                 <ul className="list-unstyled" key={item.id}>
-                                                    <li className="align-items-center">
-                                                        <a href="#">{item.name}</a>
+                                                    <li className="align-items-center cursor" onClick={() => router.push(`/blog/category/${item._id}/1`)}>
+                                                        <a>{item.name}</a>
                                                         {/* <span>(14)</span> */}
                                                     </li>
                                                 </ul>

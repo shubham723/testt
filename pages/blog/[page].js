@@ -117,7 +117,7 @@ const Test = ({ page }) => {
 
                                                             <p className="mb-4">{ReactHtmlParser(item?.discription)}</p>
 
-                                                            <button className="btn btn-main btn-icon btn-round-full readMore" onClick={() => router.push(`/blog/detail/${item._id}`)}>Read More <i className="icofont-simple-right ml-2"></i></button>
+                                                            <button className="btn btn-main btn-icon btn-round-full readMore cursor" onClick={() => router.push(`/blog/detail/${item._id}`)}>Read More <i className="icofont-simple-right ml-2"></i></button>
                                                         </div>
                                                     </div>
                                                 )
@@ -169,7 +169,7 @@ const Test = ({ page }) => {
                                             return (
                                                 <div className="py-2">
                                                     <span className="text-sm text-muted">{item?.createdAt}</span>
-                                                    <h6 className="my-2">{item?.title}</h6>
+                                                    <h6 className="my-2 cursor"  onClick={() => router.push(`/blog/detail/${item._id}`)}>{item?.title}</h6>
                                                 </div>
                                             )
                                         })
@@ -182,8 +182,8 @@ const Test = ({ page }) => {
                                         categories?.length > 0 && categories.map(item => {
                                             return (
                                                 <ul className="list-unstyled" key={item.id}>
-                                                    <li className="align-items-center">
-                                                        <a href="#">{item.name}</a>
+                                                    <li className="align-items-center cursor" onClick={() => router.push(`/blog/category/${item._id}/1`)}>
+                                                        <a>{item.name}</a>
                                                         {/* <span>(14)</span> */}
                                                     </li>
                                                 </ul>

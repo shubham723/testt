@@ -59,7 +59,7 @@ const Test = ({ id, page }) => {
 
     const getTrendingBlogs = async () => {
         try {
-            let response = await axios.get('http://localhost:3001/v1/blogs?page=1&limit=3&isTreandings=true');
+            let response = await axios.get('http://3.88.73.172:3001/v1/blogs?page=1&limit=3&isTreandings=true');
             setTrendingBlogs(response.data.data);
         } catch (error) {
             ToggleNotification('Error', error?.response?.data?.message);
@@ -101,7 +101,7 @@ const Test = ({ id, page }) => {
                                 <div className="col-lg-12 col-md-12 mb-5">
                                     <div className="blog-item">
                                         {
-                                            blogs && blogs.map((item, idx) => {
+                                            blogs?.length > 0 ? blogs.map((item, idx) => {
                                                 return (
                                                     <div key={idx} className='mt-3'>
                                                         <div className="blog-thumb">
@@ -117,11 +117,13 @@ const Test = ({ id, page }) => {
 
                                                             <p className="mb-4">{ReactHtmlParser(item?.discription)}</p>
 
-                                                            <button className="btn btn-main btn-icon btn-round-full readMore" onClick={() => router.push(`/blog/detail/${item._id}`)}>Read More <i className="icofont-simple-right ml-2"></i></button>
+                                                            <button className="btn btn-main btn-icon btn-round-full readMore cursor" onClick={() => router.push(`/blog/detail/${item._id}`)}>Read More <i className="icofont-simple-right ml-2"></i></button>
                                                         </div>
                                                     </div>
                                                 )
-                                            })
+                                            }) : <>
+                                                <h2 className='text-center'>No Blogs Found</h2>
+                                            </>
                                         }
                                     </div>
                                 </div>
@@ -169,7 +171,7 @@ const Test = ({ id, page }) => {
                                             return (
                                                 <div className="py-2">
                                                     <span className="text-sm text-muted">{item?.createdAt}</span>
-                                                    <h6 className="my-2">{item?.title}</h6>
+                                                    <h6 className="my-2 cursor" onClick={() => router.push(`/blog/detail/${item._id}`)}>{item?.title}</h6>
                                                 </div>
                                             )
                                         })
@@ -181,8 +183,8 @@ const Test = ({ id, page }) => {
                                     {
                                         categories?.length > 0 && categories.map(item => {
                                             return (
-                                                <ul className="list-unstyled" key={item.id}>
-                                                    <li className="align-items-center">
+                                                <ul className="list-unstyled" key={item.id} onC>
+                                                    <li className="align-items-center cursor" onClick={() => router.push(`/blog/category/${item._id}/1`)}>
                                                         <a href="#">{item.name}</a>
                                                         {/* <span>(14)</span> */}
                                                     </li>
@@ -190,28 +192,6 @@ const Test = ({ id, page }) => {
                                             )
                                         })
                                     }
-                                    {/* <ul className="list-unstyled">
-                                        <li className="align-items-center">
-                                            <a href="#">Medicine</a>
-                                            <span>(14)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Equipments</a>
-                                            <span>(2)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Heart</a>
-                                            <span>(10)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Free counselling</a>
-                                            <span>(5)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Lab test</a>
-                                            <span>(5)</span>
-                                        </li>
-                                    </ul> */}
                                 </div>
 
 

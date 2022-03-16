@@ -1600,3 +1600,7 @@ a:focus {
 .pagination > li:last-child > span {
   border-radius: unset;
 }
+
+.cursor {
+  cursor: pointer;
+}
