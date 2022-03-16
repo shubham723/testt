@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Form } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import ToggleNotification from "../components/Reusable Components/ToogleNotification/ToogleNotification";
 
@@ -15,6 +15,20 @@ const Contact = () => {
         queryTopic: '',
         phone_number: ''
     });
+    const [settings, setSettings] = useState({});
+
+    useEffect(() => {
+        getSettings();
+    }, []);
+
+    const getSettings = async () => {
+        try {
+            let response = await axios.get('http://localhost:3001/v1/settings');
+            setSettings(response.data.data);
+        } catch (error) {
+            ToggleNotification("Error", error?.response?.data?.message);
+        }
+    };
 
     const submitHandler = async (values) => {
         try {
@@ -46,7 +60,7 @@ const Contact = () => {
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <div id="top">
                 <section className="page-title bg-1">
                     <div className="overlay"></div>
@@ -70,21 +84,21 @@ const Contact = () => {
                                 <div className="contact-block mb-4 mb-lg-0">
                                     <i className="icofont-live-support"></i>
                                     <h5>Call Us</h5>
-                                    ********
+                                    {settings?.contact}
                                 </div>
                             </div>
                             <div className="col-lg-4 col-sm-6 col-md-6">
                                 <div className="contact-block mb-4 mb-lg-0">
                                     <i className="icofont-support-faq"></i>
                                     <h5>Email Us</h5>
-                                    contact@magnitie.com
+                                    {settings?.email}
                                 </div>
                             </div>
                             <div className="col-lg-4 col-sm-6 col-md-6">
                                 <div className="contact-block mb-4 mb-lg-0">
                                     <i className="icofont-location-pin"></i>
                                     <h5>Location</h5>
-                                    Dummy Address
+                                    {settings?.address}
                                 </div>
                             </div>
                         </div>
@@ -173,10 +187,8 @@ const Contact = () => {
                         </div>
                     </div>
                 </section>
-
             </div>
-
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 };

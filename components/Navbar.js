@@ -16,7 +16,7 @@ const Header = () => {
                         <Nav className="me-auto">
                         </Nav>
                         <Nav>
-                            <Nav.Link className="pointer" onClick={() => router.push('/blog')}>
+                            <Nav.Link className="pointer" onClick={() => router.push('/blog/1')}>
                                 Blog
                             </Nav.Link>
                             <Nav.Link className="pointer" onClick={() => router.push('/contact')}>

@@ -1,18 +1,18 @@
 import Head from 'next/head';
-import backgroundImage from '../../assets/Images/sports.jpg';
+// import backgroundImage from '../../assets/Images/sports.jpg';
 import Image from 'next/image';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { AiFillCalendar } from 'react-icons/ai';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+// import Header from '../../components/Header';
+// import Footer from '../../components/Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ToggleNotification from '../../components/Reusable Components/ToogleNotification/ToogleNotification';
 import { useRouter } from 'next/router';
 import ReactHtmlParser from 'react-html-parser';
-import Paging from '../../components/Reusable Components/Paging/Paging';
+import ToggleNotification from '../../../../components/Reusable Components/ToogleNotification/ToogleNotification';
+import Paging from '../../../../components/Reusable Components/Paging/Paging';
 
-const Test = ({ page }) => {
+const Test = ({ id, page }) => {
     const [blogs, setBlogs] = useState([]);
     const [categories, setCategories] = useState([]);
     const [totalPage, setTotalPage] = useState();
@@ -39,7 +39,7 @@ const Test = ({ page }) => {
     const getData = async () => {
         try {
             console.log(page)
-            let response = await axios.get(`http://3.88.73.172:3001/v1/blogs?page=${page}&limit=10`);
+            let response = await axios.get(`http://3.88.73.172:3001/v1/blogs?page=${page}&limit=10&categoryId=${id}`);
             setBlogs(response.data.data);
             setTotalPage(response.data.meta.total_records);
         } catch (error) {
@@ -50,7 +50,7 @@ const Test = ({ page }) => {
     const searchPage = async (number) => {
         try {
             setPage(number);
-            let response = await axios.get(`http://3.88.73.172:3001/v1/blogs?page=${number}&limit=10`);
+            let response = await axios.get(`http://3.88.73.172:3001/v1/blogs?page=${number}&limit=10&categoryId=${id}`);
             setBlogs(response.data.data);
         } catch (error) {
             ToggleNotification('Error', error?.response?.data?.message);
@@ -59,7 +59,7 @@ const Test = ({ page }) => {
 
     const getTrendingBlogs = async () => {
         try {
-            let response = await axios.get('http://3.88.73.172:3001/v1/blogs?page=1&limit=3&isTreandings=true');
+            let response = await axios.get('http://localhost:3001/v1/blogs?page=1&limit=3&isTreandings=true');
             setTrendingBlogs(response.data.data);
         } catch (error) {
             ToggleNotification('Error', error?.response?.data?.message);
@@ -263,6 +263,7 @@ export async function getServerSideProps(context) {
     // console.log(context)
     return {
         props: {
+            id: context.query.id,
             page: context.query.page
         }
     }

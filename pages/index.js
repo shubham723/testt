@@ -9,13 +9,14 @@ import { Card } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ToggleNotification from '../components/Reusable Components/ToogleNotification/ToogleNotification';
 import ReactHtmlParser from 'react-html-parser';
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const router = useRouter();
+  // const settings = useContext(SettingContext);
 
   useEffect(() => {
       getData();
@@ -23,21 +24,22 @@ const Home = () => {
 
   const getData = async() => {
     try {
-      let trendingBlogs = await axios.get('http://3.88.73.172:3001/v1/blogs?page=1&limit=10');
+      let trendingBlogs = await axios.get('http://3.88.73.172:3001/v1/blogs?page=1&limit=6&isTreandings=true');
       setBlogs(trendingBlogs.data.data);
     } catch (error) {
       ToggleNotification("Error", error?.response?.data?.message);
     }
   };
 
-  console.log(blogs)
+  
+  // console.log(settings)
   return (
     <div id="top">
       <Head>
         <title>Maginite</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Header />
+      {/* <Header settings={settings} /> */}
       <section className="banner">
         <div className="container">
           <div className="row">
@@ -180,7 +182,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      {/* <Footer settings={settings} /> */}
 
     </div>
   )

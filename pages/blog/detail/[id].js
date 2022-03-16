@@ -1,6 +1,6 @@
-import Header from '../../../components/Header';
+import Header from '.././../../components/Header';
 import Image from 'next/image';
-import backgroundImage from '../../assets/Images/sports.jpg';
+import backgroundImage from '../../../assets/Images/sports.jpg';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { AiFillCalendar } from 'react-icons/ai';
 import Footer from '../../../components/Footer';
@@ -11,14 +11,29 @@ import { Form } from 'react-bootstrap';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import ReactHtmlParser from 'react-html-parser';
+import { useRouter } from 'next/router';
 
 const Test1 = ({ id }) => {
     const [blog, setBlog] = useState({});
+    const [categories, setCategories] = useState([]);
     const [comment] = useState({});
+    const [trendingBlogs, setTrendingBlogs] = useState([]);
+    const router = useRouter();
 
     useEffect(() => {
         blogData();
+        getCategory();
+        getTrendingBlogs();
     }, []);
+
+    const getCategory = async () => {
+        try {
+            let response = await axios.get('http://3.88.73.172:3001/v1/categories');
+            setCategories(response.data.data);
+        } catch (error) {
+            ToggleNotification('Error', error?.response?.data?.message);
+        }
+    };
 
     const blogData = async () => {
         try {
@@ -33,7 +48,8 @@ const Test1 = ({ id }) => {
         try {
             console.log(values);
             values.blogId = id;
-            let response = await axios.post('http://3.88.73.172:3001/v1/comments', values);
+            let response = await axios.post(`http://3.88.73.172:3001/v1/comments/${id}`, values);
+            await blogData();
             ToggleNotification("Success", response.data.message);
         } catch (error) {
             ToggleNotification("Error", error?.response?.data?.message);
@@ -56,11 +72,19 @@ const Test1 = ({ id }) => {
         validateOnMount: true,
     });
 
+    const getTrendingBlogs = async () => {
+        try {
+            let response = await axios.get('http://3.88.73.172:3001/v1/blogs?page=1&limit=3&isTreandings=true');
+            setTrendingBlogs(response.data.data);
+        } catch (error) {
+            ToggleNotification('Error', error?.response?.data?.message);
+        }
+    };
+
     console.log(blog);
     return (
         <>
-            <Header />
-
+            {/* <Header /> */}
             <section className="page-title bg-1">
                 <div className="overlay"></div>
                 <div className="container">
@@ -75,8 +99,6 @@ const Test1 = ({ id }) => {
                 </div>
             </section>
 
-
-
             <section className="section blog-wrap">
                 <div className="container">
                     <div className="row">
@@ -84,13 +106,13 @@ const Test1 = ({ id }) => {
                             <div className="row">
                                 <div className="col-lg-12 mb-5">
                                     <div className="single-blog-item">
-                                        <Image src={`http://3.88.73.172:3001/${blog.blog_Picture}`} alt="Blog Picture" className="img-fluid" width={700} height={300} />
+                                        <Image src={`http://3.88.73.172:3001/${blog.blog_Picture}`} alt="Blog Picture" className="img-fluid" width={700} height={500} />
 
                                         <div className="blog-item-content mt-2">
                                             <div className="blog-item-meta mb-3">
-                                                <span className="text-color-2 text-capitalize mr-3"><AiFillCalendar className="icofont-book-mark mr-2" /> Equipment</span>
-                                                <span className="text-muted text-capitalize mr-3"><AiOutlineMessage className='ms-2' />5 Comments</span>
-                                                <span className="text-black text-capitalize ms-3"><AiFillCalendar className="icofont-calendar" /> 28th January</span>
+                                                <span className="text-color-2 text-capitalize mr-3"><AiFillCalendar className="icofont-book-mark mr-2" /> {blog?.categoryId?.name} </span>
+                                                <span className="text-muted text-capitalize mr-3"><AiOutlineMessage className='ms-2' />{blog?.comments?.length} Comments</span>
+                                                {/* <span className="text-black text-capitalize ms-3"><AiFillCalendar className="icofont-calendar" /> 28th January</span> */}
                                             </div>
 
                                             <h2 className="mb-4 text-md">{blog?.title}</h2>
@@ -129,30 +151,38 @@ const Test1 = ({ id }) => {
 
                                 <div className="col-lg-12">
                                     <div className="comment-area mt-4 mb-5">
-                                        <h4 className="mb-4">2 Comments on Healthy environment... </h4>
+                                        <h4 className="mb-4">{blog?.comments?.length} Comments on Healthy environment... </h4>
                                         <ul className="comment-tree list-unstyled">
                                             <li className="mb-5">
                                                 <div className="comment-area-box">
                                                     <div className="comment-thumb float-left">
-                                                        <Image alt="" src={backgroundImage} className="img-fluid" />
+                                                        {/* <Image alt="" src={backgroundImage} className="img-fluid" /> */}
                                                     </div>
 
-                                                    <div className="comment-info">
-                                                        <h5 className="mb-1">John</h5>
-                                                        <span>United Kingdom</span>
-                                                        <span className="date-comm">| Posted April 7, 2019</span>
-                                                    </div>
-                                                    {/* <div className="comment-meta mt-2">
+                                                    {
+                                                        blog?.comments?.length > 0 && blog?.comments?.map(item => {
+                                                            return (
+                                                                <>
+                                                                    <div className="comment-info">
+                                                                        <h5 className="mb-1">{item?.name}</h5>
+                                                                        {/* <span>United Kingdom</span> */}
+                                                                        <span className="date-comm">| Posted April 7, 2019</span>
+                                                                    </div>
+                                                                    {/* <div className="comment-meta mt-2">
                                                         <a href="#"><i className="icofont-reply mr-2 text-muted"></i>Reply</a>
                                                     </div> */}
 
-                                                    <div className="comment-content mt-3">
-                                                        <p>Some consultants are employed indirectly by the client via a consultancy staffing company, a company that provides consultants on an agency basis. </p>
-                                                    </div>
+                                                                    <div className="comment-content mt-3">
+                                                                        <p> {item?.comment} </p>
+                                                                    </div>
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
                                                 </div>
                                             </li>
 
-                                            <li>
+                                            {/* <li>
                                                 <div className="comment-area-box">
                                                     <div className="comment-thumb float-left">
                                                         <Image alt="" src={backgroundImage} className="img-fluid" />
@@ -166,13 +196,13 @@ const Test1 = ({ id }) => {
 
                                                     {/* <div className="comment-meta mt-2">
                                                         <a href="#"><i className="icofont-reply mr-2 text-muted"></i>Reply </a>
-                                                    </div> */}
+                                                    </div> 
 
                                                     <div className="comment-content mt-3">
                                                         <p>Some consultants are employed indirectly by the client via a consultancy staffing company, a company that provides consultants on an agency basis. </p>
                                                     </div>
                                                 </div>
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </div>
                                 </div>
@@ -225,8 +255,18 @@ const Test1 = ({ id }) => {
                             <div className="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
                                 <div className="sidebar-widget latest-post mb-3">
                                     <h5>Popular Posts</h5>
+                                    {
+                                        trendingBlogs?.length > 0 && trendingBlogs.map(item => {
+                                            return (
+                                                <div className="py-2">
+                                                    <span className="text-sm text-muted">{item?.createdAt}</span>
+                                                    <h6 className="my-2" onClick={() => router.push(`/blog/detail/${item._id}`)}>{item?.title}</h6>
+                                                </div>
+                                            )
+                                        })
+                                    }
 
-                                    <div className="py-2">
+                                    {/* <div className="py-2">
                                         <span className="text-sm text-muted">03 Mar 2018</span>
                                         <h6 className="my-2">Thoughtful living in los Angeles</h6>
                                     </div>
@@ -239,38 +279,27 @@ const Test1 = ({ id }) => {
                                     <div className="py-2">
                                         <span className="text-sm text-muted">03 Mar 2018</span>
                                         <h6 className="my-2">Fusce lobortis lorem at ipsum semper sagittis</h6>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                                 <div className="sidebar-widget category mb-3">
                                     <h5 className="mb-4">Categories</h5>
-
-                                    <ul className="list-unstyled">
-                                        <li className="align-items-center">
-                                            <a href="#">Medicine</a>
-                                            <span>(14)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Equipments</a>
-                                            <span>(2)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Heart</a>
-                                            <span>(10)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Free counselling</a>
-                                            <span>(5)</span>
-                                        </li>
-                                        <li className="align-items-center">
-                                            <a href="#">Lab test</a>
-                                            <span>(5)</span>
-                                        </li>
-                                    </ul>
+                                    {
+                                        categories?.length > 0 && categories.map(item => {
+                                            return (
+                                                <ul className="list-unstyled" key={item.id}>
+                                                    <li className="align-items-center">
+                                                        <a href="#">{item.name}</a>
+                                                        {/* <span>(14)</span> */}
+                                                    </li>
+                                                </ul>
+                                            )
+                                        })
+                                    }
                                 </div>
 
 
-                                <div className="sidebar-widget tags mb-3">
+                                {/* <div className="sidebar-widget tags mb-3">
                                     <h5 className="mb-4">Tags</h5>
                                     <a href="#">Doctors</a>
                                     <a href="#">agency</a>
@@ -281,7 +310,7 @@ const Test1 = ({ id }) => {
                                     <a href="#">Social Media</a>
                                     <a href="#">Branding</a>
                                     <a href="#">Laboratory</a>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -289,7 +318,7 @@ const Test1 = ({ id }) => {
             </section>
 
             {/* <!-- footer Start --> */}
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 };

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer = ({ settings }) => {
   return (
     <footer className="footer section gray-bg">
       <div className="container">
@@ -45,7 +45,7 @@ const Footer = () => {
                   <i className="icofont-email mr-3"></i>
                   <span className="h6 mb-0">Support Available for 24/7</span>
                 </div>
-                <h4 className="mt-2"><a href="tel:+23-345-67890">Support@email.com</a></h4>
+                <h4 className="mt-2"><a href="tel:+23-345-67890">{settings?.email}</a></h4>
               </div>
 
               <div className="footer-contact-block">
@@ -53,7 +53,7 @@ const Footer = () => {
                   <i className="icofont-support mr-3"></i>
                   <span className="h6 mb-0">Mon to Fri : 08:30 - 18:00</span>
                 </div>
-                <h4 className="mt-2"><a href="tel:+23-345-67890">****</a></h4>
+                <h4 className="mt-2"><a href="tel:+23-345-67890">{settings?.contact}</a></h4>
               </div>
             </div>
           </div>
