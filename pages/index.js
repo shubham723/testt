@@ -45,7 +45,7 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-6 col-md-12 col-xl-7">
-              <div className="block">
+              {/* <div className="block">
                 <div className="divider mb-3"></div>
                 <span className="text-uppercase text-sm letter-spacing ">Total Health care solution</span>
                 <h1 className="mb-3 mt-3">Your most trusted health partner</h1>
@@ -54,7 +54,7 @@ const Home = () => {
                 <div className="btn-container ">
                   <a target="_blank" className="btn btn-main-2 btn-icon btn-round-full">Make appoinment <i className="icofont-simple-right ml-2"></i></a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
