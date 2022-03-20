@@ -19,10 +19,11 @@ const Home = () => {
   // const settings = useContext(SettingContext);
 
   useEffect(() => {
-      getData();
-  }, []); 
+    getData();
+  }, []);
 
-  const getData = async() => {
+  console.log(ReactHtmlParser(blogs[0]?.discription) );
+  const getData = async () => {
     try {
       let trendingBlogs = await axios.get('http://3.88.73.172:3001/v1/blogs?page=1&limit=6&isTreandings=true');
       setBlogs(trendingBlogs.data.data);
@@ -31,7 +32,7 @@ const Home = () => {
     }
   };
 
-  
+
   // console.log(settings)
   return (
     <div id="top">
@@ -118,7 +119,7 @@ const Home = () => {
                 <h2 className="title-color">Maginite</h2>
                 <p className="mt-4 mb-5">We provide best leading medicle service Nulla perferendis veniam deleniti ipsum officia dolores repellat laudantium obcaecati neque.</p>
 
-                <a href="service.html" className="btn btn-main-2 btn-round-full btn-icon readMore">Read More<i className="icofont-simple-right ml-3"></i></a>
+                <a className="btn btn-main-2 btn-round-full btn-icon readMore">Read More<i className="icofont-simple-right ml-3"></i></a>
               </div>
             </div>
           </div>
@@ -149,9 +150,11 @@ const Home = () => {
                           {ReactHtmlParser(item.title)}
                         </Card.Title>
                         <Card.Text>
-                          {ReactHtmlParser(item.discription)}
+                          {
+                            ReactHtmlParser(item?.discription)[0].props.children[0].length > 1000 ? ReactHtmlParser(item?.discription)[0].props.children[0].substring(0, 999) + '...' : ReactHtmlParser(item?.discription)[0].props.children[0]
+                          }
                         </Card.Text>
-                        <Card.Footer className="color point readMore" onClick={() => router.push(`/blog/${item._id}`)}>
+                        <Card.Footer className="color point readMore" onClick={() => router.push(`/blog/detail/${item._id}`)}>
                           Read More
                         </Card.Footer>
                       </Card.Body>

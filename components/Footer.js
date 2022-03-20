@@ -23,7 +23,7 @@ const Footer = ({ settings }) => {
 
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="widget mb-5 mb-lg-0">
-              <h4 className="text-capitalize mb-3">Support</h4>
+              {/* <h4 className="text-capitalize mb-3">Support</h4>
               <div className="divider mb-4"></div>
 
               <ul className="list-unstyled footer-menu lh-35">
@@ -31,7 +31,7 @@ const Footer = ({ settings }) => {
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Company Support </a></li>
                 <li><a href="#">FAQuestions</a></li>
-              </ul>
+              </ul> */}
             </div>
           </div>
 

@@ -23,20 +23,21 @@ const Contact = () => {
 
     const getSettings = async () => {
         try {
-            let response = await axios.get('http://localhost:3001/v1/settings');
+            let response = await axios.get('http://3.88.73.172:3001/v1/settings');
             setSettings(response.data.data);
         } catch (error) {
             ToggleNotification("Error", error?.response?.data?.message);
         }
     };
 
-    const submitHandler = async (values) => {
+    const submitHandler = async (values, { resetForm }) => {
         try {
-            console.log(values);
             let response = await axios.post('http://3.88.73.172:3001/v1/contact', values);
             ToggleNotification("Success", response.data.message);
+            resetForm();
         } catch (error) {
             ToggleNotification("Error", error?.response?.data?.message);
+            resetForm();
         }
     };
 
@@ -122,7 +123,7 @@ const Contact = () => {
                                     <div className="row">
                                         <div className="col-lg-6">
                                             <div className="form-group">
-                                                <input name="name" id="name" type="text" className="form-control" placeholder="Your Full Name"
+                                                <input name="name" id="name" type="text" value={formik.values.name || ''} className="form-control" placeholder="Your Full Name"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
@@ -134,7 +135,7 @@ const Contact = () => {
 
                                         <div className="col-lg-6">
                                             <div className="form-group">
-                                                <input name="email" id="email" type="email" className="form-control" placeholder="Your Email Address"
+                                                <input name="email" id="email" type="email" value={formik.values.email || ''} className="form-control" placeholder="Your Email Address"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
@@ -146,7 +147,7 @@ const Contact = () => {
 
                                         <div className="col-lg-6">
                                             <div className="form-group">
-                                                <input name="queryTopic" id="queryTopic" type="text" className="form-control" placeholder="Your Query Topic"
+                                                <input name="queryTopic" id="queryTopic" value={formik.values.queryTopic || ''}  type="text" className="form-control" placeholder="Your Query Topic"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
@@ -158,7 +159,7 @@ const Contact = () => {
 
                                         <div className="col-lg-6">
                                             <div className="form-group">
-                                                <input name="phone_number" id="phone_number" type="number" className="form-control" placeholder="Your Phone Number"
+                                                <input name="phone_number" id="phone_number" type="number" value={formik.values.phone_number || ''}  className="form-control" placeholder="Your Phone Number"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
@@ -170,7 +171,7 @@ const Contact = () => {
                                     </div>
 
                                     <div className="form-group-2 mb-4">
-                                        <textarea name="message" id="message" className="form-control" rows="8" placeholder="Your Message"
+                                        <textarea name="message" id="message" className="form-control" rows="8"  value={formik.values.message || ''} placeholder="Your Message"
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}>
                                         </textarea>

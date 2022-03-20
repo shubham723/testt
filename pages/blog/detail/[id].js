@@ -44,15 +44,16 @@ const Test1 = ({ id }) => {
         }
     };
 
-    const submitHandler = async (values) => {
+    const submitHandler = async (values, { resetForm }) => {
         try {
-            console.log(values);
             values.blogId = id;
             let response = await axios.post(`http://3.88.73.172:3001/v1/comments/${id}`, values);
             await blogData();
             ToggleNotification("Success", response.data.message);
+            resetForm();
         } catch (error) {
             ToggleNotification("Error", error?.response?.data?.message);
+            resetForm();
         }
     };
 
@@ -81,7 +82,7 @@ const Test1 = ({ id }) => {
         }
     };
 
-    console.log(trendingBlogs);
+    console.log(formik.values);
     return (
         <>
             {/* <Header /> */}
@@ -151,7 +152,7 @@ const Test1 = ({ id }) => {
 
                                 <div className="col-lg-12">
                                     <div className="comment-area mt-4 mb-5">
-                                        <h4 className="mb-4">{blog?.comments?.length} Comments on Healthy environment... </h4>
+                                        <h4 className="mb-4">{blog?.comments?.length} Comments </h4>
                                         <ul className="comment-tree list-unstyled">
                                             <li className="mb-5">
                                                 <div className="comment-area-box">
@@ -166,7 +167,7 @@ const Test1 = ({ id }) => {
                                                                     <div className="comment-info">
                                                                         <h5 className="mb-1">{item?.name}</h5>
                                                                         {/* <span>United Kingdom</span> */}
-                                                                        <span className="date-comm">| Posted April 7, 2019</span>
+                                                                        <span className="date-comm"> Posted April 7, 2019</span>
                                                                     </div>
                                                                     {/* <div className="comment-meta mt-2">
                                                         <a href="#"><i className="icofont-reply mr-2 text-muted"></i>Reply</a>
@@ -215,7 +216,7 @@ const Test1 = ({ id }) => {
 
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input className="form-control" type="text" name="name" id="name" placeholder="Name:"
+                                                    <input className="form-control" type="text" name="name" value={formik.values.name || ''} id="name" placeholder="Name:"
                                                         onChange={formik.handleChange}
                                                         onBlur={formik.handleBlur}
                                                     />
@@ -227,7 +228,7 @@ const Test1 = ({ id }) => {
 
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input className="form-control" type="email" name="email" id="email" placeholder="Email:"
+                                                    <input className="form-control" type="email" name="email" value={formik.values.email || ''} id="email" placeholder="Email:"
                                                         onChange={formik.handleChange}
                                                         onBlur={formik.handleBlur}
                                                     />
@@ -238,7 +239,7 @@ const Test1 = ({ id }) => {
                                             </div>
                                         </div>
 
-                                        <textarea className="form-control mt-3 mb-4" name="comment" id="comment" cols="30" rows="5" placeholder="Comment"
+                                        <textarea className="form-control mt-3 mb-4" name="comment" id="comment" value={formik.values.comment || ''} cols="30" rows="5" placeholder="Comment"
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
                                         >
