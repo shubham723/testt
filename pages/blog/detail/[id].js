@@ -115,7 +115,7 @@ const Test1 = ({ id }) => {
                                                 {/* <span className="text-black text-capitalize ms-3"><AiFillCalendar className="icofont-calendar" /> 28th January</span> */}
                                             </div>
 
-                                            <h2 className="mb-4 text-md">{blog?.title}</h2>
+                                            <h2 className="mb-4 text-md">{ReactHtmlParser(blog?.title)}</h2>
 
                                             <p className="lead mb-4">{ReactHtmlParser(blog?.discription)}</p>
 
@@ -162,7 +162,7 @@ const Test1 = ({ id }) => {
                                                     {
                                                         blog?.comments?.length > 0 && blog?.comments?.map(item => {
                                                             return (
-                                                                <>
+                                                                <div key={item._id}>
                                                                     <div className="comment-info">
                                                                         <h5 className="mb-1">{item?.name}</h5>
                                                                         {/* <span>United Kingdom</span> */}
@@ -175,7 +175,7 @@ const Test1 = ({ id }) => {
                                                                     <div className="comment-content mt-3">
                                                                         <p> {item?.comment} </p>
                                                                     </div>
-                                                                </>
+                                                                </div>
                                                             )
                                                         })
                                                     }
@@ -258,9 +258,9 @@ const Test1 = ({ id }) => {
                                     {
                                         trendingBlogs?.length > 0 && trendingBlogs.map(item => {
                                             return (
-                                                <div className="py-2">
+                                                <div className="py-2" key={item._id}>
                                                     <span className="text-sm text-muted">{item?.createdAt}</span>
-                                                    <h6 className="my-2 cursor" onClick={() => router.push(`/blog/detail/${item._id}`)}>{item?.title}</h6>
+                                                    <h6 className="my-2 cursor" onClick={() => router.push(`/blog/detail/${item._id}`)}>{ReactHtmlParser(item?.title)}</h6>
                                                 </div>
                                             )
                                         })
@@ -287,7 +287,7 @@ const Test1 = ({ id }) => {
                                     {
                                         categories?.length > 0 && categories.map(item => {
                                             return (
-                                                <ul className="list-unstyled" key={item.id}>
+                                                <ul className="list-unstyled" key={item._id}>
                                                     <li className="align-items-center cursor" onClick={() => router.push(`/blog/category/${item._id}/1`)}>
                                                         <a>{item.name}</a>
                                                         {/* <span>(14)</span> */}

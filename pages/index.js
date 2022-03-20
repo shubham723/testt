@@ -146,7 +146,7 @@ const Home = () => {
                       <Image variant="left" src={`http://3.88.73.172:3001/${item.blog_Picture}`} width={300} height={300} alt={'Top Categories'} />
                       <Card.Body>
                         <Card.Title>
-                          {item.title}
+                          {ReactHtmlParser(item.title)}
                         </Card.Title>
                         <Card.Text>
                           {ReactHtmlParser(item.discription)}

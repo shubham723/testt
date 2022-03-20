@@ -68,10 +68,10 @@ const Footer = ({ settings }) => {
             </div>
             <div className="col-lg-6">
               <div className="subscribe-form text-lg-right mt-5 mt-lg-0">
-                <form action="#" className="subscribe">
+                {/* <form action="#" className="subscribe">
                   <input type="text" className="form-control" placeholder="Your Email address" />
                   <a href="#" className="btn btn-main-2 btn-round-full subscribe-btn">Subscribe</a>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>

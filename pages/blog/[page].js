@@ -113,7 +113,7 @@ const Test = ({ page }) => {
                                                                 <span className="text-black text-capitalize ms-3"><AiFillCalendar className="icofont-calendar" /> {item.createdAt} </span>
                                                             </div>
 
-                                                            <h2 className="mt-3 mb-3 head">{item?.title}</h2>
+                                                            <h2 className="mt-3 mb-3 head">{ReactHtmlParser(item?.title)}</h2>
 
                                                             <p className="mb-4">{ReactHtmlParser(item?.discription)}</p>
 
@@ -167,9 +167,9 @@ const Test = ({ page }) => {
                                     {
                                         trendingBlogs?.length > 0 && trendingBlogs.map(item => {
                                             return (
-                                                <div className="py-2">
+                                                <div className="py-2" key={item._id}>
                                                     <span className="text-sm text-muted">{item?.createdAt}</span>
-                                                    <h6 className="my-2 cursor"  onClick={() => router.push(`/blog/detail/${item._id}`)}>{item?.title}</h6>
+                                                    <h6 className="my-2 cursor"  onClick={() => router.push(`/blog/detail/${item._id}`)}>{ReactHtmlParser(item?.title)}</h6>
                                                 </div>
                                             )
                                         })
@@ -181,7 +181,7 @@ const Test = ({ page }) => {
                                     {
                                         categories?.length > 0 && categories.map(item => {
                                             return (
-                                                <ul className="list-unstyled" key={item.id}>
+                                                <ul className="list-unstyled" key={item._id}>
                                                     <li className="align-items-center cursor" onClick={() => router.push(`/blog/category/${item._id}/1`)}>
                                                         <a>{item.name}</a>
                                                         {/* <span>(14)</span> */}
