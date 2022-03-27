@@ -31,7 +31,7 @@ const Home = () => {
 
   const goToBlogDetails = (id, name) => {
     localStorage.setItem('id', id);
-    router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "-")}`);
+    router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "-").toLowerCase()}`);
   };
 
   const getSettings = async () => {
