@@ -1,5 +1,3 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Form } from "react-bootstrap";
@@ -61,17 +59,15 @@ const Contact = () => {
 
     return (
         <>
-            {/* <Header /> */}
             <div id="top">
                 <section className="page-title bg-1">
                     <div className="overlay"></div>
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-12">
+                            <div className="col-md-12" style={{ zIndex: '100' }}>
                                 <div className="block text-center">
                                     <span className="text-white">Contact Us</span>
                                     <h1 className="text-capitalize mb-5 text-lg">Get in Touch</h1>
-
                                 </div>
                             </div>
                         </div>
@@ -147,7 +143,7 @@ const Contact = () => {
 
                                         <div className="col-lg-6">
                                             <div className="form-group">
-                                                <input name="queryTopic" id="queryTopic" value={formik.values.queryTopic || ''}  type="text" className="form-control" placeholder="Your Query Topic"
+                                                <input name="queryTopic" id="queryTopic" value={formik.values.queryTopic || ''} type="text" className="form-control" placeholder="Your Query Topic"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
@@ -159,7 +155,7 @@ const Contact = () => {
 
                                         <div className="col-lg-6">
                                             <div className="form-group">
-                                                <input name="phone_number" id="phone_number" type="number" value={formik.values.phone_number || ''}  className="form-control" placeholder="Your Phone Number"
+                                                <input name="phone_number" id="phone_number" type="number" value={formik.values.phone_number || ''} className="form-control" placeholder="Your Phone Number"
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
@@ -171,7 +167,7 @@ const Contact = () => {
                                     </div>
 
                                     <div className="form-group-2 mb-4">
-                                        <textarea name="message" id="message" className="form-control" rows="8"  value={formik.values.message || ''} placeholder="Your Message"
+                                        <textarea name="message" id="message" className="form-control" rows="8" value={formik.values.message || ''} placeholder="Your Message"
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}>
                                         </textarea>
@@ -189,7 +185,6 @@ const Contact = () => {
                     </div>
                 </section>
             </div>
-            {/* <Footer /> */}
         </>
     )
 };

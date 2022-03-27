@@ -29,7 +29,7 @@ const Header = ({ settings }) => {
 
                 <Navbar bg="light" expand="lg">
                     <Container>
-                        <Navbar.Brand onClick={() => router.push('/')}>Magnitie</Navbar.Brand>
+                        <Navbar.Brand onClick={() => router.push('/')} className='head'>Magnitie</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
@@ -39,15 +39,8 @@ const Header = ({ settings }) => {
                             >
                             </Nav>
                             <Nav className="d-flex">
-                                {/* <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="blog-sidebar.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog <i className="icofont-thin-down"></i></a>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdown05">
-                                        <li><a className="dropdown-item" href="blog-sidebar.html">Blog with Sidebar</a></li>
-
-                                        <li><a className="dropdown-item" href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> */}
-                                <Nav.Link onClick={() => router.push('/blog/1')}>Blogs</Nav.Link>
+                                <Nav.Link onClick={() => router.push('/about')}>About Us</Nav.Link>
+                                <Nav.Link onClick={() => router.push('/blog')}>Blogs</Nav.Link>
                                 <Nav.Link onClick={() => router.push('/contact')}>Contact</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>

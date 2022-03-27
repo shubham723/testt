@@ -527,6 +527,7 @@ a:focus {
   background: url("../public/sports.jpg") no-repeat 50% 50%;
   background-size: cover;
   position: relative;
+  z-index: 1;
 }
 
 .banner {
@@ -1602,5 +1603,24 @@ a:focus {
 }
 
 .cursor {
+  cursor: pointer;
+}
+
+.consultbtn {
+  background: blue;
+  color: white;
+  height: 50px;
+  width: 160px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+
+.logo span {
+  color: #223a66;
+  padding: 10px;
+  background-color: #121299;
+  border: 1px solid black;
   cursor: pointer;
 }
