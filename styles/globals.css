@@ -1624,3 +1624,7 @@ a:focus {
   border: 1px solid black;
   cursor: pointer;
 }
+
+.slide div span {
+  min-width: 100vw !important;
+}

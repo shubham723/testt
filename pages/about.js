@@ -2,6 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import ToggleNotification from "../components/Reusable Components/ToogleNotification/ToogleNotification";
+import ReactHtmlParser from 'react-html-parser';
 
 const About = () => {
     const [settings, setSettings] = useState({});

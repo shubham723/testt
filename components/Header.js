@@ -1,7 +1,9 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const Header = ({ settings }) => {
+    console.log(settings);
     const router = useRouter();
     return (
         <div style={{ backgroundColor: 'black', color: 'white' }}>
@@ -29,7 +31,9 @@ const Header = ({ settings }) => {
 
                 <Navbar bg="light" expand="lg">
                     <Container>
-                        <Navbar.Brand onClick={() => router.push('/')} className='head'>Magnitie</Navbar.Brand>
+                        <Navbar.Brand onClick={() => router.push('/')} className='head'>
+                            <Image src={`http://3.88.73.172:3001/${settings?.logo}`} height={50} width={50} />
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav

@@ -87,12 +87,17 @@ const BlogDetails = ({ name }) => {
 
     const goToBlogDetails = (id, name) => {
         localStorage.setItem('id', id);
-        router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "")}`);
+        if(typeof name[0]?.props?.children[0] === 'string') {
+            router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "-")}`);
+        }
+        else {
+            router.push(`/${name[0]?.props?.children[0].props.children[0].replace(/\s/g, "-")}`);
+        }
     };
 
     const goToBlogCategories = (id, name) => {
         localStorage.setItem('categoryId', id);
-        router.push(`/blog/${name.replace(/\s/g, "")}`);
+        router.push(`/blog/${name.replace(/\s/g, "-")}`);
     };
 
     return (

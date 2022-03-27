@@ -68,16 +68,16 @@ const Blogs = () => {
     const goToBlogDetails = (id, name) => {
         localStorage.setItem('id', id);
         if(typeof name[0]?.props?.children[0] === 'string') {
-            router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "")}`);
+            router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "-")}`);
         }
         else {
-            router.push(`/${name[0]?.props?.children[0].props.children[0].replace(/\s/g, "")}`);
+            router.push(`/${name[0]?.props?.children[0].props.children[0].replace(/\s/g, "-")}`);
         }
     };
 
     const goToBlogCategories = (id, name) => {
         localStorage.setItem('categoryId', id);
-        router.push(`/blog/${name.replace(/\s/g, "")}`);
+        router.push(`/blog/${name.replace(/\s/g, "-")}`);
     };
 
     return (

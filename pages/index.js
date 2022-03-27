@@ -31,7 +31,7 @@ const Home = () => {
 
   const goToBlogDetails = (id, name) => {
     localStorage.setItem('id', id);
-    router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "")}`);
+    router.push(`/${name[0]?.props?.children[0].replace(/\s/g, "-")}`);
   };
 
   const getSettings = async () => {
@@ -99,7 +99,7 @@ const Home = () => {
                     <div className="section-title">
                       <h2>Trending Blogs</h2>
                       <div className="divider mx-auto my-4"></div>
-                      <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
+                      {/* <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p> */}
                     </div>
                   </div>
                 </div>
