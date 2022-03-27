@@ -83,8 +83,8 @@ const Home = () => {
                   </div>
                   <div className="col-lg-7">
                     <div className="about-content pl-4 mt-4 mt-lg-0">
-                      <h2 className="title-color"> {settings?.about_us_heading} </h2>
-                      <p className="mt-4 mb-5"> {settings?.about_us_detail} </p>
+                      <h2 className="title-color"> {ReactHtmlParser(settings?.about_us_heading)} </h2>
+                      <p className="mt-4 mb-5"> {ReactHtmlParser(settings?.about_us_detail)} </p>
                       <a className="btn btn-main-2 btn-round-full btn-icon readMore head" onClick={() => router.push('/about')}>Read More<i className="icofont-simple-right ml-3"></i></a>
                     </div>
                   </div>

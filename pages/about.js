@@ -46,13 +46,13 @@ const About = () => {
                                 <h2 className="mb-4">About Us</h2>
                                 <div className="divider mx-auto my-4"></div>
                                 <h5>
-                                    {settings?.about_us_heading}
+                                    {ReactHtmlParser(settings?.about_us_heading)}
                                 </h5>
                             </div>
                         </div>
                         <div>
                             <p>
-                                {settings?.about_us_detail}
+                                {ReactHtmlParser(settings?.about_us_detail)}
                             </p>
                         </div>
                     </div>
