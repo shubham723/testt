@@ -73,7 +73,7 @@ const Home = () => {
           />
         </div> :
           <>
-            {/* <Banner settings={settings} /> */}
+            <Banner settings={settings} />
             {/* <section className="section about">
               <div className="container">
                 <div className="row align-items-center">
