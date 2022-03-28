@@ -73,8 +73,8 @@ const Home = () => {
           />
         </div> :
           <>
-            <Banner settings={settings} />
-            {/* <section className="section about">
+            {/* <Banner settings={settings} /> */}
+            <section className="section about">
               <div className="container">
                 <div className="row align-items-center">
                   <div className="col-lg-5 col-sm-6">
@@ -91,9 +91,9 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </section> */}
+            </section>
 
-            {/* <section className="section service">
+            <section className="section service">
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-lg-7 text-center">
@@ -131,7 +131,7 @@ const Home = () => {
                   }
                 </div>
               </div>
-            </section> */}
+            </section>
           </>
       }
     </div>
