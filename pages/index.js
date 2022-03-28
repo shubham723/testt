@@ -104,7 +104,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                   {
                     blogs?.length > 0 && blogs.map((item, idx) => {
                       return (
@@ -129,7 +129,7 @@ const Home = () => {
                       )
                     })
                   }
-                </div>
+                </div> */}
               </div>
             </section>
           </>
