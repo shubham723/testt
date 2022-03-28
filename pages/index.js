@@ -93,7 +93,7 @@ const Home = () => {
               </div>
             </section> */}
 
-            <section className="section service">
+            {/* <section className="section service">
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-lg-7 text-center">
@@ -104,7 +104,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                {/* <div className="row">
+                <div className="row">
                   {
                     blogs?.length > 0 && blogs.map((item, idx) => {
                       return (
@@ -129,9 +129,9 @@ const Home = () => {
                       )
                     })
                   }
-                </div> */}
+                </div>
               </div>
-            </section>
+            </section> */}
           </>
       }
     </div>
