@@ -44,7 +44,8 @@ const Footer = ({ settings }) => {
           <div className="row align-items-center justify-content-between">
             <div className="col-lg-6">
               <div className="copyright">
-                &copy; Copyright Reserved to <span className="text-color">Magnitie</span>
+                {/* &copy; Copyright Reserved to <span className="text-color">Magnitie</span> */}
+                {settings?.copyRight}
               </div>
             </div>
             <div className="col-lg-6">
