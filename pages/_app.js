@@ -27,9 +27,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <NotificationContainer />
-      {/* <Header settings={settings} /> */}
+      <Header settings={settings} />
       <Component {...pageProps} />
-      {/* <Footer settings={settings} /> */}
+      <Footer settings={settings} />
     </>
   )
 };
