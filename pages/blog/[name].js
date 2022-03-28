@@ -99,7 +99,7 @@ const BlogCategories = ({ name }) => {
                 </div>
             </section>
 
-            {/* <section className="section blog-wrap">
+            <section className="section blog-wrap">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8">
@@ -182,7 +182,7 @@ const BlogCategories = ({ name }) => {
                         </div>
                     </div>
                 </div>
-            </section> */}
+            </section>
         </>
     )
 };
