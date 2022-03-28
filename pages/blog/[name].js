@@ -81,10 +81,9 @@ const BlogCategories = ({ name }) => {
 
     return (
         <>
-            <Head>
+            {/* <Head>
                 <title>Blog Category - {name}</title>
-                {/* <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" /> */}
-            </Head>
+            </Head> */}
 
             <section className="page-title bg-1">
                 <div className="overlay"></div>
@@ -100,7 +99,7 @@ const BlogCategories = ({ name }) => {
                 </div>
             </section>
 
-            <section className="section blog-wrap">
+            {/* <section className="section blog-wrap">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8">
@@ -183,7 +182,7 @@ const BlogCategories = ({ name }) => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </>
     )
 };
